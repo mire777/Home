@@ -4,7 +4,7 @@
 // @version          4.1
 // @description      Dodaj pretragu i prečice
 // @run-at           document-end
-// @match            https://www.google.com/
+// @match            https://mire777.github.io/Home/
 // ==/UserScript==
 
 (function() {
