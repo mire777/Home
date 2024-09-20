@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name             Google Pretraga ***
+// @name             Home
 // @namespace        userscript://google-search
-// @version          4.1
-// @description      Dodaj pretragu i prečice
+// @version          5.0
+// @description      Browser home page
 // @run-at           document-end
 // @match            https://mire777.github.io/Home/
 // ==/UserScript==
@@ -73,7 +73,7 @@
         addShortcutButton.style.marginTop = '40px';
         addShortcutButton.style.padding = '10px 20px';
         addShortcutButton.style.borderRadius = '12px';
-        addShortcutButton.addEventListener('click', openAddShortcutDialog);
+        addShortcutButton.addEventListener('click', () => openAddShortcutDialog());
         overlay.appendChild(addShortcutButton);
 
         input.addEventListener('keydown', (event) => {
@@ -96,7 +96,7 @@
         }
     }
 
-    function openAddShortcutDialog() {
+    function openAddShortcutDialog(name = '', url = '', color = '') {
         const dialog = document.createElement('div');
         dialog.style.position = 'fixed';
         dialog.style.top = '50%';
@@ -109,14 +109,10 @@
         dialog.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.2)';
         dialog.style.zIndex = '10001';
 
-        const message = document.createElement('div');
-        message.textContent = 'Enter shortcut name and URL:';
-        message.style.marginBottom = '10px';
-        dialog.appendChild(message);
-
         const nameInput = document.createElement('input');
         nameInput.type = 'text';
         nameInput.placeholder = 'Shortcut name...';
+        nameInput.value = name;  
         nameInput.style.width = '250px';
         nameInput.style.marginBottom = '10px';
         nameInput.style.borderRadius = '4px';
@@ -126,12 +122,28 @@
         const urlInput = document.createElement('input');
         urlInput.type = 'text';
         urlInput.placeholder = 'Enter URL...';
+        urlInput.value = url;  
         urlInput.style.width = '250px';
         urlInput.style.marginBottom = '10px';
         urlInput.style.borderRadius = '4px';
         urlInput.style.border = '1px solid #dcdcdc';
         urlInput.style.padding = '5px';
+
+        const colorSelect = document.createElement('select');
+        colorSelect.style.marginBottom = '10px';
+        ['red', 'green', 'blue', 'yellow', 'orange', 'gray', 'black', 'pink', 'lightgreen', 'lightblue', 'purple', 'lavender'].forEach(colorOption => {
+            const option = document.createElement('option');
+            option.value = colorOption;
+            option.textContent = colorOption.charAt(0).toUpperCase() + colorOption.slice(1);
+            if (colorOption === color) option.selected = true;
+            colorSelect.appendChild(option);
+        });
         
+        const buttonWrapper = document.createElement('div');
+        buttonWrapper.style.display = 'flex';
+        buttonWrapper.style.justifyContent = 'flex-end';
+        buttonWrapper.style.marginTop = '10px';
+
         const saveButton = document.createElement('button');
         saveButton.textContent = 'Save';
         saveButton.style.marginRight = '10px';
@@ -144,13 +156,18 @@
         cancelButton.style.padding = '5px';
 
         saveButton.addEventListener('click', () => {
-            const name = nameInput.value;
-            const url = urlInput.value;
-            if (name && url) {
-                addShortcut(name, url);
+            const newName = nameInput.value;
+            const newUrl = urlInput.value;
+            const newColor = colorSelect.value;
+            if (newName && newUrl) {
+                if (name) {
+                    updateShortcut(newName, newUrl, newColor);
+                } else {
+                    addShortcut(newName, newUrl, newColor);
+                }
                 document.body.removeChild(dialog);
             } else {
-                alert('Molimo unesite ime i URL prečice.');
+                alert('Molimo unesite ime, URL i boju prečice.');
             }
         });
 
@@ -158,25 +175,38 @@
             document.body.removeChild(dialog);
         });
 
+        buttonWrapper.appendChild(saveButton);
+        buttonWrapper.appendChild(cancelButton);
+
         dialog.appendChild(nameInput);
         dialog.appendChild(urlInput);
-        dialog.appendChild(saveButton);
-        dialog.appendChild(cancelButton);
+        dialog.appendChild(colorSelect);
+        dialog.appendChild(buttonWrapper);
         document.body.appendChild(dialog);
     }
 
-    function addShortcut(name, url) {
+    function addShortcut(name, url, color) {
         if (shortcuts.length >= 20) {
-            alert('Maximum number shortcuts reached (20)');
+            alert('Maximum number of shortcuts reached (20)');
             return;
         }
 
         const initial = name.charAt(0).toUpperCase();
-        const color = getRandomColor();
         const shortcut = { name, url, initial, color };
         shortcuts.push(shortcut);
         saveShortcuts();
         loadShortcuts(document.getElementById('shortcut-area'));
+    }
+
+    function updateShortcut(name, url, color) {
+        const shortcut = shortcuts.find(s => s.initial === name.charAt(0).toUpperCase());
+        if (shortcut) {
+            shortcut.name = name;
+            shortcut.url = url;
+            shortcut.color = color;
+            saveShortcuts();
+            loadShortcuts(document.getElementById('shortcut-area'));
+        }
     }
 
     function createShortcutButton(container, shortcut) {
@@ -197,42 +227,97 @@
         button.style.cursor = 'pointer';
         button.style.margin = '0';
 
-        button.addEventListener('click', () => {
-            const fullUrl = shortcut.url.startsWith('http://') || shortcut.url.startsWith('https://') ? shortcut.url : 'http://' + shortcut.url;
-            window.open(fullUrl, '_blank');
-        });
-
-        let pressTimer;
-        button.addEventListener('touchstart', function() {
-            pressTimer = setTimeout(() => {
-                if (confirm('Do you want to delete Shortcut?')) {
-                    deleteShortcut(shortcut, buttonWrapper);
-                }
-            }, 700);
-        });
-
-        button.addEventListener('touchend', function() {
-            clearTimeout(pressTimer);
-        });
-
-        button.addEventListener('touchcancel', function() {
-            clearTimeout(pressTimer);
-        });
-
         const nameLabel = document.createElement('div');
         nameLabel.textContent = shortcut.name;
         nameLabel.style.marginTop = '5px';
+        nameLabel.style.fontSize = '12px';
         nameLabel.style.textAlign = 'center';
+
+        button.addEventListener('click', () => {
+            const fullUrl = shortcut.url.startsWith('http') ? shortcut.url : 'http://' + shortcut.url;
+            window.open(fullUrl, '_blank');
+        });
+
+        button.addEventListener('contextmenu', (event) => {
+            event.preventDefault();
+            openEditDeleteMenu(shortcut);
+        });
 
         buttonWrapper.appendChild(button);
         buttonWrapper.appendChild(nameLabel);
         container.appendChild(buttonWrapper);
     }
 
-    function deleteShortcut(shortcut, buttonWrapper) {
-        shortcuts = shortcuts.filter(s => s.url !== shortcut.url);
+    function openEditDeleteMenu(shortcut) {
+        const menu = document.createElement('div');
+        menu.style.position = 'fixed';
+        menu.style.top = '50%';
+        menu.style.left = '50%';
+        menu.style.transform = 'translate(-50%, -50%)';
+        menu.style.backgroundColor = 'white';
+        menu.style.border = '1px solid #ccc';
+        menu.style.padding = '20px';
+        menu.style.borderRadius = '10px';
+        menu.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.2)';
+        menu.style.zIndex = '10001';
+        menu.style.width = 'auto'; // Smanjena širina prozora
+        menu.style.height = 'auto'; // Visina prozora
+        menu.style.textAlign = 'center';
+        menu.style.paddingBottom = '15px'; // Visina dugmadi
+
+        const message = document.createElement('p');
+        message.textContent = 'Edit or delete shortcut?';
+      //  message.innerHTML = 'Do you want to Edit <br> or delete shortcut?';
+        menu.appendChild(message);
+
+        const buttonSpacer = document.createElement('div');
+        buttonSpacer.style.height = '10px'; // Prazan prostor ispod teksta
+        menu.appendChild(buttonSpacer);
+
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.style.marginRight = '8px'; // Razmak između dugmadi
+        editButton.style.borderRadius = '4px'
+        editButton.style.padding = '5px 10px';
+        editButton.addEventListener('click', () => {
+            document.body.removeChild(menu);
+            openAddShortcutDialog(shortcut.name, shortcut.url, shortcut.color);
+        });
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.style.marginRight = '8px'; // Razmak između dugmadi
+        deleteButton.style.borderRadius = '4px';
+        deleteButton.style.padding = '5px 10px';
+        deleteButton.addEventListener('click', () => {
+            deleteShortcut(shortcut);
+            document.body.removeChild(menu);
+        });
+
+        const cancelButton = document.createElement('button');
+        cancelButton.textContent = 'Cancel';
+        cancelButton.style.borderRadius = '4px';
+        cancelButton.style.padding = '5px 10px';
+        cancelButton.addEventListener('click', () => {
+            document.body.removeChild(menu);
+        });
+
+        const buttonWrapper = document.createElement('div');
+        buttonWrapper.style.display = 'flex';
+        buttonWrapper.style.justifyContent = 'flex-end';
+        buttonWrapper.style.marginTop = '10px'; // Razmak između poruke i dugmadi
+
+        buttonWrapper.appendChild(editButton);
+        buttonWrapper.appendChild(deleteButton);
+        buttonWrapper.appendChild(cancelButton);
+
+        menu.appendChild(buttonWrapper);
+        document.body.appendChild(menu);
+    }
+
+    function deleteShortcut(shortcut) {
+        shortcuts = shortcuts.filter(s => s.initial !== shortcut.initial);
         saveShortcuts();
-        buttonWrapper.parentNode.removeChild(buttonWrapper);
         loadShortcuts(document.getElementById('shortcut-area'));
     }
 
@@ -240,23 +325,9 @@
         localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
     }
 
-    function loadShortcuts(shortcutArea) {
-        shortcutArea.innerHTML = '';
-        shortcuts.forEach(shortcut => createShortcutButton(shortcutArea, shortcut));
-
-        const shortcutCount = shortcuts.length;
-        if (shortcutCount < 4) {
-            shortcutArea.style.justifyContent = 'center';
-            shortcutArea.style.gridTemplateColumns = `repeat(${shortcutCount}, 1fr)`;
-        } else {
-            shortcutArea.style.justifyContent = 'start';
-            shortcutArea.style.gridTemplateColumns = 'repeat(4, 1fr)';
-        }
-    }
-
-    function getRandomColor() {
-        const colors = ['red', 'green', 'blue', 'yellow', 'orange', 'gray', 'black', 'pink', 'lightgreen', 'lightblue', 'purple', 'lavender'];
-        return colors[Math.floor(Math.random() * colors.length)];
+    function loadShortcuts(container) {
+        container.innerHTML = '';
+        shortcuts.forEach(shortcut => createShortcutButton(container, shortcut));
     }
 
     createSearchOverlay();
