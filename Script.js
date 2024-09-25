@@ -55,7 +55,7 @@
     // logoButton.textContent = 'S'; // Zameniti sa željenim slovom
     logoButton.textContent = logoLetter; // Učitaj logo
     
-   logoButton.style.position = 'relative';
+   logoButton.style.position = 'absolute';
    logoButton.style.width = '80px';
    logoButton.style.height = '80px';
 
@@ -80,7 +80,7 @@ logoButton.style.marginBottom = '200px'; // Razmak ispod
 input.placeholder = localStorage.getItem('searchText') || 'Search...'; // Vratite placeholder
 
         input.type = 'text';
-        input.style.position = 'relative';
+        input.style.position = 'absoulte';
         input.style.height = '50px';
         input.style.width = 'calc(100% - 100px)';
         input.style.border = '1px solid #dcdcdc';
@@ -95,7 +95,7 @@ input.placeholder = localStorage.getItem('searchText') || 'Search...'; // Vratit
 
         const shortcutArea = document.createElement('div');
         shortcutArea.id = 'shortcut-area';
-shortcutArea.style.position = 'relative';
+shortcutArea.style.position = 'absolute';
         shortcutArea.style.display = 'grid';
         shortcutArea.style.gridTemplateColumns = 'repeat(4, 1fr)';
         shortcutArea.style.gridGap = '4px';
