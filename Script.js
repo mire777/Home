@@ -95,7 +95,7 @@ input.placeholder = localStorage.getItem('searchText') || 'Search...'; // Vratit
 
         const shortcutArea = document.createElement('div');
         shortcutArea.id = 'shortcut-area';
-shortcutArea.style.position = 'absolute';
+shortcutArea.style.position = 'fixed';
         shortcutArea.style.display = 'grid';
         shortcutArea.style.gridTemplateColumns = 'repeat(4, 1fr)';
         shortcutArea.style.gridGap = '4px';
