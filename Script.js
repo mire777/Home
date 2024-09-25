@@ -103,6 +103,7 @@ shortcutArea.style.position = 'fixed';
         shortcutArea.style.width = 'calc(100% - 100px)';
 
 shortcutArea.style.maxHeight = 'calc(100vh - 30px - env(safe-area-inset-bottom))'; // Izbegni donji bar
+shortcutArea.style.zIndex = '999'; // Treba biti niži od overlay-a
 
 
 
