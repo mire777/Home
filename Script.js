@@ -99,10 +99,10 @@ shortcutArea.style.position = 'fixed';
         shortcutArea.style.display = 'grid';
         shortcutArea.style.gridTemplateColumns = 'repeat(4, 1fr)';
         shortcutArea.style.gridGap = '4px';
-        shortcutArea.style.marginTop = '80px';
+        shortcutArea.style.marginTop = '100px';
         shortcutArea.style.width = 'calc(100% - 100px)';
 
-shortcutArea.style.maxHeight = 'calc(100vh - 30px - env(safe-area-inset-bottom))'; // Izbegni donji bar
+shortcutArea.style.maxHeight = 'calc(100vh - 100px - env(safe-area-inset-bottom))'; // Izbegni donji bar
 shortcutArea.style.zIndex = '999'; // Treba biti niži od overlay-a
 
 
