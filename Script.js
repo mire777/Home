@@ -70,7 +70,7 @@
     logoButton.style.alignItems = 'center'; // Vertikalno centriranje
     logoButton.style.justifyContent = 'center'; // Horizontalno centriranje
     logoButton.style.pointerEvents = 'none'; // Ne klikabilno dugme
-    logoButton.style.marginTop = '-110px'; // Razmak iznad
+    logoButton.style.marginTop = '-150px'; // Razmak iznad
 logoButton.style.marginBottom = '200px'; // Razmak ispod
 
     overlay.appendChild(logoButton); // Dodaj dugme u overlay
@@ -89,8 +89,8 @@ input.placeholder = localStorage.getItem('searchText') || 'Search...'; // Vratit
         input.style.fontSize = '16px';
         input.style.boxShadow = '0 1px 1px rgba(0, 0, 0, 0.2)';
         input.style.margin = '0 10px 10px 10px';
-       // input.style.marginTop = '180px';
-        input.style.marginBottom = '100px';
+       // input.style.marginTop = '100px';
+        input.style.marginBottom = '150px';
         overlay.appendChild(input);
 
         const shortcutArea = document.createElement('div');
