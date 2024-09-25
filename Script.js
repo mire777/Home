@@ -51,6 +51,21 @@
     menuButton.addEventListener('click', openBackgroundMenu);
         document.body.appendChild(menuButton);
 
+
+// Stvaranje glavnog kontejnera
+const mainContainer = document.createElement('div');
+mainContainer.style.position = 'fixed';
+mainContainer.style.top = '0'; // Pozicija od vrha prozora
+mainContainer.style.left = '0'; // Pozicija od leve ivice
+mainContainer.style.width = '100%'; // Širina celog prozora
+mainContainer.style.zIndex = '1000'; // Osiguraj da je iznad drugih elemenata
+mainContainer.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // osiguraj pozicioniranje iznad browser bara
+        overlay.appendChild(mainContainer); // Dodaj kontejner u overlay
+
+
+
+
+        
     const logoButton = document.createElement('button');
     // logoButton.textContent = 'S'; // Zameniti sa željenim slovom
     logoButton.textContent = logoLetter; // Učitaj logo
@@ -73,7 +88,7 @@
     logoButton.style.marginTop = '-110px'; // Razmak iznad
 logoButton.style.marginBottom = '200px'; // Razmak ispod
 
-    overlay.appendChild(logoButton); // Dodaj dugme u overlay
+    mainContainer.appendChild(logoButton); // Dodaj dugme u overlay
 
 
         const input = document.createElement('input');
@@ -91,7 +106,7 @@ input.placeholder = localStorage.getItem('searchText') || 'Search...'; // Vratit
         input.style.margin = '0 10px 10px 10px';
        // input.style.marginTop = '180px';
         input.style.marginBottom = '100px';
-        overlay.appendChild(input);
+        mainContainer.appendChild(input);
 
         const shortcutArea = document.createElement('div');
         shortcutArea.id = 'shortcut-area';
@@ -108,7 +123,7 @@ shortcutArea.style.maxHeight = 'calc(100vh - 30px - env(safe-area-inset-bottom))
 
         shortcutArea.style.height = '12%';
         // shortcutArea.style.height = '100px';
-        overlay.appendChild(shortcutArea);
+        mainContainer.appendChild(shortcutArea);
         
 const addShortcutButton = document.createElement('button');
 addShortcutButton.textContent = '＋';
