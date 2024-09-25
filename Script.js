@@ -118,8 +118,15 @@ addShortcutButton.style.justifyContent = 'center'; // Ovo će centrirati horizon
 
 
 // Postavljanje margine da bi se dugme pravilno pozicioniralo
-addShortcutButton.style.marginTop = '250px';
-addShortcutButton.style.marginBottom = '-250px';
+//addShortcutButton.style.marginTop = '250px';
+//addShortcutButton.style.marginBottom = '-250px';
+
+addShortcutButton.style.position = 'fixed';
+addShortcutButton.style.bottom = '5px'; // iznad donje ivice browsera
+addShortcutButton.style.left = '50%'; // pozicioniraj 50% od leve strane
+addShortcutButton.style.transform = 'translateX(-50%)'; // centriraj horizontalno
+addShortcutButton.style.zIndex = '1001'; // z-index mora biti veći od overlay-a
+addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // osiguraj pozicioniranje iznad browser bara
 
         addShortcutButton.addEventListener('click', () => openAddShortcutDialog());
         overlay.appendChild(addShortcutButton);
