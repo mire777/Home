@@ -23,6 +23,7 @@
         const overlay = document.createElement('div');
         overlay.id = 'custom-search-overlay';
         overlay.style.position = 'fixed';
+        overlay.style.height = `calc(100% - env(safe-area-inset-bottom))`; //spreci elemente da odu ispod donjeg bara
         overlay.style.top = '0';
         overlay.style.left = '0';
         overlay.style.width = '100%';
