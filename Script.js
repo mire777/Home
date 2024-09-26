@@ -4,7 +4,7 @@
 // @version          5.0
 // @description      Browser home page
 // @run-at           document-end
-// @match            https://www.google.com/
+// @match            https://mire777.github.io/Home/
 // ==/UserScript==
 
 (function() {
