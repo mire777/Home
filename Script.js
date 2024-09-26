@@ -4,7 +4,7 @@
 // @version          5.0
 // @description      Browser home page
 // @run-at           document-end
-// @match            https://mire777.github.io/Home/
+// @match            https://www.google.com/
 // ==/UserScript==
 
 (function() {
@@ -35,6 +35,23 @@
         overlay.style.alignItems = 'center';
         overlay.style.justifyContent = 'center';
         overlay.style.flexDirection = 'column';
+
+
+        // Stvaranje glavnog kontejnera
+        const mainContainer = document.createElement('div');
+        mainContainer.style.position = 'fixed';
+        mainContainer.style.top = 'env(safe-area-inset-top)'; // Osiguraj prostor za gornji bar
+        mainContainer.style.left = '0';
+        mainContainer.style.width = '100%';
+        mainContainer.style.zIndex = '1000';
+        // Definiši visinu kontejnera za oba bara
+        mainContainer.style.height = `calc(100vh - 40px - env(safe-area-inset-bottom))`; // Izbegni gornji i donji bar
+        mainContainer.style.flexDirection = 'column'; // Vertikalni raspored
+        mainContainer.style.display = 'flex'; // Omogućava flexbox centriranje
+        mainContainer.style.flexDirection = 'column'; // Vertikalni raspored
+        mainContainer.style.justifyContent = 'flex-start'; // Horizontalno centriranje
+        mainContainer.style.alignItems = 'center'; // Vertikalno centriranje
+        overlay.appendChild(mainContainer); // Dodaj kontejner u overlay
 
         const menuButton = document.createElement('div');
         menuButton.style.position = 'fixed';
@@ -67,10 +84,11 @@
     logoButton.style.alignItems = 'center'; // Vertikalno centriranje
     logoButton.style.justifyContent = 'center'; // Horizontalno centriranje
     logoButton.style.pointerEvents = 'none'; // Ne klikabilno dugme
-    logoButton.style.marginTop = '-120px'; // Razmak iznad
-logoButton.style.marginBottom = '40px'; // Razmak ispod
 
-    overlay.appendChild(logoButton); // Dodaj dugme u overlay
+    logoButton.style.marginTop = '135px'; // Razmak iznad
+    logoButton.style.marginBottom = '40px'; // Razmak ispod
+
+    mainContainer.appendChild(logoButton); // Dodaj dugme u overlay
 
 
         const input = document.createElement('input');
@@ -87,7 +105,7 @@ input.placeholder = localStorage.getItem('searchText') || 'Search...'; // Vratit
         input.style.margin = '0 10px 10px 10px';
        // input.style.marginTop = '180px';
        // input.style.marginBottom = '10px';
-        overlay.appendChild(input);
+        mainContainer.appendChild(input);
 
         const shortcutArea = document.createElement('div');
         shortcutArea.id = 'shortcut-area';
@@ -98,7 +116,7 @@ input.placeholder = localStorage.getItem('searchText') || 'Search...'; // Vratit
         shortcutArea.style.width = 'calc(100% - 100px)';
         shortcutArea.style.height = '12%';
         // shortcutArea.style.height = '100px';
-        overlay.appendChild(shortcutArea);
+        mainContainer.appendChild(shortcutArea);
         
 const addShortcutButton = document.createElement('button');
 addShortcutButton.textContent = '＋';
