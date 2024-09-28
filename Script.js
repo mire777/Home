@@ -72,9 +72,7 @@
 
 
 //Kalkulisana visina
-const negativeMargin = (-300 / window.visualViewport.height) * 100;
-logoButton.style.marginTop = `${negativeMargin}%`;
-
+logoButton.style.marginTop = `${(window.visualViewport.height / 2) - 120}px`;
 
 
 logoButton.style.marginBottom = '40px'; // Razmak ispod
