@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name             Home 2
+// @name             Home
 // @namespace        userscript://google-search
 // @version          5.0
 // @description      Browser home page
@@ -500,8 +500,8 @@ colors.forEach(color => {
     }
 
     // Skrati ime precice
-    if (name.length > 10) {
-       name = name.substring(0, 10);
+    if (name.length > 8) {
+       name = name.substring(0, 8);
     }
 
         const initial = name.charAt(0).toUpperCase();
