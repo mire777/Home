@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name             Home
+// @name             Home 2
 // @namespace        userscript://google-search
 // @version          5.0
 // @description      Browser home page
@@ -99,6 +99,9 @@ input.placeholder = localStorage.getItem('searchText') || 'Search...'; // Vratit
         shortcutArea.style.width = 'calc(100% - 100px)';
         shortcutArea.style.height = '12%';
         // shortcutArea.style.height = '100px';
+        // Centriraj precice
+        shortcutArea.style.alignItems = 'center';
+        shortcutArea.style.justifyContent = 'center';
         overlay.appendChild(shortcutArea);
         
 const addShortcutButton = document.createElement('button');
@@ -491,10 +494,15 @@ colors.forEach(color => {
     }
 
     function addShortcut(name, url, color) {
-        if (shortcuts.length >= 16) {
-            alert('Maximum number of shortcuts reached (16)');
-            return;
-        }
+    if (shortcuts.length >= 16) {
+        alert('Maximum number of shortcuts reached (16)');
+        return;
+    }
+
+    // Skrati ime precice
+    if (name.length > 10) {
+       name = name.substring(0, 10);
+    }
 
         const initial = name.charAt(0).toUpperCase();
         const shortcut = { name, url, initial, color };
