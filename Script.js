@@ -55,7 +55,7 @@
     logoButton.textContent = logoLetter; // Učitaj logo
     // ...
     logoButton.style.width = '80px';
-    logoButton.style.height = '80px';
+    logoButton.style.minHeight = '80px';
     logoButton.style.borderRadius = '50%';
     logoButton.style.backgroundColor = 'white'; // Belo dugme
     logoButton.style.color = 'red'; // Crveni tekst
@@ -67,17 +67,25 @@
     logoButton.style.alignItems = 'center'; // Vertikalno centriranje
     logoButton.style.justifyContent = 'center'; // Horizontalno centriranje
     logoButton.style.pointerEvents = 'none'; // Ne klikabilno dugme
-    logoButton.style.marginTop = '-120px'; // Razmak iznad
+    //Podesi visinu
+    // logoButton.style.marginTop = (localStorage.getItem('logoMarginTop') || '-150') + 'px';
+
+
+//Kalkulisana visina
+const negativeMargin = (-300 / window.visualViewport.height) * 100;
+logoButton.style.marginTop = `${negativeMargin}%`;
+
+
+
 logoButton.style.marginBottom = '40px'; // Razmak ispod
 
     overlay.appendChild(logoButton); // Dodaj dugme u overlay
-
 
         const input = document.createElement('input');
 input.placeholder = localStorage.getItem('searchText') || 'Search...'; // Vratite placeholder
 
         input.type = 'text';
-        input.style.height = '50px';
+        input.style.minHeight = '50px';
         input.style.width = 'calc(100% - 100px)';
         input.style.border = '1px solid #dcdcdc';
         input.style.borderRadius = '24px';
@@ -245,6 +253,32 @@ logoInput.addEventListener('input', () => {
 
    menu.appendChild(colorSelect); */
 
+const createInputField = (labelText, placeholder, value = '', type = 'text') => {
+        const label = document.createElement('p');
+        label.textContent = labelText;
+        label.style.marginBottom = '10px';
+        menu.appendChild(label);
+
+        const input = document.createElement('input');
+        input.type = type;
+        input.placeholder = placeholder;
+        input.value = value;
+        input.style = `
+            width: 250px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #dcdcdc;
+            padding: 5px;
+        `;
+        menu.appendChild(input);
+
+        return input;
+    };
+
+// Kreiraj meni za podesavanje visine (heighInput)
+const savedHeight = localStorage.getItem('logoMarginTop') || '-150';
+    const heightInput = createInputField('Set Height:', 'Enter height in px...', savedHeight, 'number');
+
 // Učitavanje trenutnih vrednosti iz localStorage
 backgroundInput.value = backgroundImageUrl || '';
 searchbarInput.value = localStorage.getItem('searchText') || '';
@@ -312,6 +346,14 @@ if (inputField) {
     localStorage.setItem('logoLetter', logoLetter);
 // DISABLED! (Boja teksta)  
 // document.getElementById('custom-search-overlay').style.color = textColor;
+
+
+// Sacuvaj visinu u LocalStorage
+localStorage.setItem('logoMarginTop', heightInput.value);
+
+//Azuriraj visinu (primeni)
+const logoHeight = heightInput.value;
+logoButton.style.marginTop = (logoHeight || '-150') + 'px';
 
  document.body.removeChild(menu);
 });
