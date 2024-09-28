@@ -72,7 +72,7 @@
 
 
 //Kalkulisana visina
-logoButton.style.marginTop = `${(window.visualViewport.height / 2) - 120}px`;
+logoButton.style.marginTop = `${(window.visualViewport.height / 2) - 500}px`;
 
 
 logoButton.style.marginBottom = '40px'; // Razmak ispod
