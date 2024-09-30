@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name             Home
+// @name             Home 3
 // @namespace        userscript://google-search
 // @version          5.0
 // @description      Browser home page
 // @run-at           document-end
-// @match            https://mire777.github.io/Home/
+// @match            https://www.google.com/
 // ==/UserScript==
 
 (function() {
