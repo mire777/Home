@@ -13,11 +13,12 @@
 
     function createSearchOverlay() {
 
-    // Postavi backgroundImageUrl i ostale vrednosti na početku
+    // Postavi osnovne vrednosti na početku
     backgroundImageUrl = localStorage.getItem('backgroundImageUrl') || '';
     const searchText = localStorage.getItem('searchText') || '';
     const logoLetter = localStorage.getItem('logoLetter') || 'S';
-
+    const ShortcutTextColor = localStorage.getItem('ShortcutTextColor') || 'black';   
+ 
         if (document.getElementById('custom-search-overlay')) return;
 
         const overlay = document.createElement('div');
@@ -37,13 +38,16 @@
         overlay.style.flexDirection = 'column';
 
         const menuButton = document.createElement('div');
+        // TextColor
+        menuButton.style.setProperty('color', ShortcutTextColor, 'important');
+        menuButton.id = 'menuButton-area';
         menuButton.style.position = 'fixed';
         menuButton.style.top = '10px';
         menuButton.style.right = '20px';
         menuButton.style.width = '6px';
         menuButton.style.height = '6px';
         menuButton.style.cursor = 'pointer';
-        menuButton.style.color = 'black';
+       // menuButton.style.color = 'black';
         menuButton.style.fontSize = '24px';
         menuButton.textContent = '⋮';
         menuButton.style.zIndex = '10001';
@@ -91,6 +95,8 @@ input.placeholder = localStorage.getItem('searchText') || 'Search...'; // Vratit
         overlay.appendChild(input);
 
         const shortcutArea = document.createElement('div');
+        // ShortcutTextColor
+        shortcutArea.style.setProperty('color', ShortcutTextColor, 'important');
         shortcutArea.id = 'shortcut-area';
         shortcutArea.style.display = 'grid';
         shortcutArea.style.gridTemplateColumns = 'repeat(4, 1fr)';
@@ -162,7 +168,7 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos URL-a za pozadinsku sliku
     const backgroundLabel = document.createElement('p');
     backgroundLabel.textContent = 'Set background image:';
-    backgroundLabel.style.marginBottom = '10px';
+    backgroundLabel.style.marginBottom = '3px';
     menu.appendChild(backgroundLabel);
 
     const backgroundInput = document.createElement('input');
@@ -170,7 +176,7 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     backgroundInput.placeholder = 'Enter image URL...';
     backgroundInput.value = backgroundImageUrl || '';
     backgroundInput.style.width = '250px';
-    backgroundInput.style.marginBottom = '10px';
+    backgroundInput.style.marginBottom = '5px';
     backgroundInput.style.borderRadius = '4px';
     backgroundInput.style.border = '1px solid #dcdcdc';
     backgroundInput.style.padding = '5px';
@@ -179,14 +185,14 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos teksta u search bar
     const searchbarLabel = document.createElement('p');
     searchbarLabel.textContent = 'Set searchbar text:';
-    searchbarLabel.style.marginBottom = '10px';
+    searchbarLabel.style.marginBottom = '3px';
     menu.appendChild(searchbarLabel);
 
     const searchbarInput = document.createElement('input');
     searchbarInput.type = 'text';
     searchbarInput.placeholder = 'Enter search text...';
     searchbarInput.style.width = '250px';
-    searchbarInput.style.marginBottom = '10px';
+    searchbarInput.style.marginBottom = '5px';
     searchbarInput.style.borderRadius = '4px';
     searchbarInput.style.border = '1px solid #dcdcdc';
     searchbarInput.style.padding = '5px';
@@ -195,14 +201,14 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos custom provider-a
     const providerLabel = document.createElement('p');
     providerLabel.textContent = 'Custom provider:';
-    providerLabel.style.marginBottom = '10px';
+    providerLabel.style.marginBottom = '3px';
     menu.appendChild(providerLabel);
 
     const providerInput = document.createElement('input');
     providerInput.type = 'text';
     providerInput.placeholder = 'Enter custom provider...';
     providerInput.style.width = '250px';
-    providerInput.style.marginBottom = '10px';
+    providerInput.style.marginBottom = '5px';
     providerInput.style.borderRadius = '4px';
     providerInput.style.border = '1px solid #dcdcdc';
     providerInput.style.padding = '5px';
@@ -211,7 +217,7 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos logotipa (slova)
     const logoLabel = document.createElement('p');
     logoLabel.textContent = 'Set logo letter:';
-    logoLabel.style.marginBottom = '10px';
+    logoLabel.style.marginBottom = '3px';
     menu.appendChild(logoLabel);
 
     const logoInput = document.createElement('input');
@@ -225,34 +231,16 @@ logoInput.addEventListener('input', () => {
 });
 
     logoInput.style.width = '250px';
-    logoInput.style.marginBottom = '10px';
+    logoInput.style.marginBottom = '5px';
     logoInput.style.borderRadius = '4px';
     logoInput.style.border = '1px solid #dcdcdc';
     logoInput.style.padding = '5px';
     menu.appendChild(logoInput);
 
-    
-   // DISABLED! (Meni za odabir boje teksta)
-  /*  const colorLabel = document.createElement('p');
-    colorLabel.textContent = 'Set text color:';
-    colorLabel.style.marginBottom = '10px';
-    menu.appendChild(colorLabel);
-
-    const colorSelect = document.createElement('select');
-    const colors = ['black', 'white'];
-    colors.forEach(color => {
-        const option = document.createElement('option');
-        option.value = color;
-        option.textContent = color.charAt(0).toUpperCase() + color.slice(1);
-        colorSelect.appendChild(option);
-    });
-
-   menu.appendChild(colorSelect); */
-
 const createInputField = (labelText, placeholder, value = '', type = 'text') => {
         const label = document.createElement('p');
         label.textContent = labelText;
-        label.style.marginBottom = '10px';
+        label.style.marginBottom = '3px';
         menu.appendChild(label);
 
         const input = document.createElement('input');
@@ -261,7 +249,7 @@ const createInputField = (labelText, placeholder, value = '', type = 'text') => 
         input.value = value;
         input.style = `
             width: 250px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             border-radius: 4px;
             border: 1px solid #dcdcdc;
             padding: 5px;
@@ -275,14 +263,35 @@ const createInputField = (labelText, placeholder, value = '', type = 'text') => 
 const savedHeight = localStorage.getItem('logoMarginTop') || '-150';
     const heightInput = createInputField('Set Height:', 'Enter height in px...', savedHeight, 'number');
 
+// (Meni - ShortcutTextColor)
+const colorLabel = document.createElement('p');
+colorLabel.textContent = 'Set text color:';
+colorLabel.style.marginBottom = '3px';
+menu.appendChild(colorLabel);
+
+const colorSelect = document.createElement('select');
+const colors = ['black', 'white'];
+
+const savedColor = localStorage.getItem('ShortcutTextColor') || 'black';
+colors.forEach(color => {
+    const option = document.createElement('option');
+    option.value = color;
+    option.textContent = color.charAt(0).toUpperCase() + color.slice(1);
+    
+    if (color === savedColor) {
+        option.selected = true;
+    }
+    colorSelect.style.width = '82px'; //duzina boxa
+    colorSelect.appendChild(option);
+});
+
+menu.appendChild(colorSelect);
+
 // Učitavanje trenutnih vrednosti iz localStorage
 backgroundInput.value = backgroundImageUrl || '';
 searchbarInput.value = localStorage.getItem('searchText') || '';
 providerInput.value = localStorage.getItem('customProvider') || '';
 logoInput.value = localStorage.getItem('logoLetter') || '';
-
-// DISABLED! (Ucitaj boju teksta)
-// colorSelect.value = localStorage.getItem('textColor') || 'black';
 
     // Dugmad za Save i Cancel
     const buttonWrapper = document.createElement('div');
@@ -320,10 +329,7 @@ saveButton.addEventListener('click', () => {
     const searchText = searchbarInput.value;
     const customProvider = providerInput.value;
     const logoLetter = logoInput.value;
-    // DISABLED! (Boja teksta)
-   // const textColor = colorSelect.value;
-
-    
+      
 // Ažurirajte polje za pretragu odmah
 const inputField = document.querySelector('#custom-search-overlay input[type="text"]');
 if (inputField) {
@@ -350,6 +356,14 @@ localStorage.setItem('logoMarginTop', heightInput.value);
 //Azuriraj visinu (primeni)
 const logoHeight = heightInput.value;
 logoButton.style.marginTop = (logoHeight || '-150') + 'px';
+
+// Primeni ShortcutTextColor
+localStorage.setItem('ShortcutTextColor', colorSelect.value); // Sačuvaj novu boju
+const ShortcutTextColor = localStorage.getItem('ShortcutTextColor') || 'black';
+document.getElementById('shortcut-area').style.color = ShortcutTextColor; // Azuriraj boju
+
+// Azuriraj boju Menu - dugmeta
+document.getElementById('menuButton-area').style.color = ShortcutTextColor;
 
  document.body.removeChild(menu);
 });
