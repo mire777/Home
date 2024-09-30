@@ -10,20 +10,12 @@
 let style = document.createElement('style');
 style.textContent = `
     body {
-        font-family: 'Arial', sans-serif; /* Fiksni font */
-        font-size: 16px; /* Fiksna veličina slova */
-        line-height: 1.5; /* Opcionalno, razmak između redova */
-    }
-
-    * {
-        font-family: inherit; /* Nasleđuje font iz body */
-        font-size: inherit; /* Nasleđuje veličinu slova iz body */
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+        font-size: 16px !important; /* ili neka druga željena veličina */
+        font-family: Arial, sans-serif !important; /* zameni sa željenim fontom */
     }
 `;
 document.head.appendChild(style);
+
 
 
 
