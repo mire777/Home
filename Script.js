@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name             Home
+// @name             Home 2
 // @namespace        userscript://google-search
 // @version          5.0
 // @description      Browser home page
@@ -166,9 +166,10 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     menu.style.zIndex = '10001';
 
     // Opcija za unos URL-a za pozadinsku sliku
-    const backgroundLabel = document.createElement('p');
+    const backgroundLabel = document.createElement('div');
     backgroundLabel.textContent = 'Set background image:';
-    backgroundLabel.style.marginBottom = '10px';
+    backgroundLabel.style.fontSize = '13px';
+    backgroundLabel.style.marginBottom = '5px';
     menu.appendChild(backgroundLabel);
 
     const backgroundInput = document.createElement('input');
@@ -176,48 +177,51 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     backgroundInput.placeholder = 'Enter image URL...';
     backgroundInput.value = backgroundImageUrl || '';
     backgroundInput.style.width = '250px';
-    backgroundInput.style.marginBottom = '10px';
+    backgroundInput.style.marginBottom = '20px';
     backgroundInput.style.borderRadius = '4px';
     backgroundInput.style.border = '1px solid #dcdcdc';
     backgroundInput.style.padding = '5px';
     menu.appendChild(backgroundInput);
 
     // Opcija za unos teksta u search bar
-    const searchbarLabel = document.createElement('p');
+    const searchbarLabel = document.createElement('div');
     searchbarLabel.textContent = 'Set searchbar text:';
-    searchbarLabel.style.marginBottom = '10px';
+    searchbarLabel.style.fontSize = '13px';
+    searchbarLabel.style.marginBottom = '5px';
     menu.appendChild(searchbarLabel);
 
     const searchbarInput = document.createElement('input');
     searchbarInput.type = 'text';
     searchbarInput.placeholder = 'Enter search text...';
     searchbarInput.style.width = '250px';
-    searchbarInput.style.marginBottom = '10px';
+    searchbarInput.style.marginBottom = '20px';
     searchbarInput.style.borderRadius = '4px';
     searchbarInput.style.border = '1px solid #dcdcdc';
     searchbarInput.style.padding = '5px';
     menu.appendChild(searchbarInput);
 
     // Opcija za unos custom provider-a
-    const providerLabel = document.createElement('p');
+    const providerLabel = document.createElement('div');
     providerLabel.textContent = 'Custom provider:';
-    providerLabel.style.marginBottom = '10px';
+    providerLabel.style.fontSize = '13px';
+    providerLabel.style.marginBottom = '5px';
     menu.appendChild(providerLabel);
 
     const providerInput = document.createElement('input');
     providerInput.type = 'text';
     providerInput.placeholder = 'Enter custom provider...';
     providerInput.style.width = '250px';
-    providerInput.style.marginBottom = '10px';
+    providerInput.style.marginBottom = '20px';
     providerInput.style.borderRadius = '4px';
     providerInput.style.border = '1px solid #dcdcdc';
     providerInput.style.padding = '5px';
     menu.appendChild(providerInput);
 
     // Opcija za unos logotipa (slova)
-    const logoLabel = document.createElement('p');
+    const logoLabel = document.createElement('div');
     logoLabel.textContent = 'Set logo letter:';
-    logoLabel.style.marginBottom = '10px';
+    logoLabel.style.fontSize = '13px';
+    logoLabel.style.marginBottom = '5px';
     menu.appendChild(logoLabel);
 
     const logoInput = document.createElement('input');
@@ -240,7 +244,7 @@ logoInput.addEventListener('input', () => {
 const createInputField = (labelText, placeholder, value = '', type = 'text') => {
         const label = document.createElement('p');
         label.textContent = labelText;
-        label.style.marginBottom = '10px';
+        label.style.marginBottom = '5px';
         menu.appendChild(label);
 
         const input = document.createElement('input');
@@ -261,12 +265,14 @@ const createInputField = (labelText, placeholder, value = '', type = 'text') => 
 
 // Kreiraj meni za podesavanje visine (heighInput)
 const savedHeight = localStorage.getItem('logoMarginTop') || '-150';
-    const heightInput = createInputField('Set Height:', 'Enter height in px...', savedHeight, 'number');
+const heightInput = createInputField('Set Height:', 'Enter height in px...', savedHeight, 'number');
+heightInput.style.marginBottom = '20px';
 
 // (Meni - ShortcutTextColor)
-const colorLabel = document.createElement('p');
+const colorLabel = document.createElement('div');
 colorLabel.textContent = 'Set text color:';
-colorLabel.style.marginBottom = '10px';
+colorLabel.style.fontSize = '13px';
+colorLabel.style.marginBottom = '5px';
 menu.appendChild(colorLabel);
 
 const colorSelect = document.createElement('select');
