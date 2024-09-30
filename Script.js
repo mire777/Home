@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name             Home 2
+// @name             Home
 // @namespace        userscript://google-search
 // @version          5.0
 // @description      Browser home page
@@ -235,7 +235,7 @@ logoInput.addEventListener('input', () => {
 });
 
     logoInput.style.width = '250px';
-    logoInput.style.marginBottom = '10px';
+    logoInput.style.marginBottom = '20px';
     logoInput.style.borderRadius = '4px';
     logoInput.style.border = '1px solid #dcdcdc';
     logoInput.style.padding = '5px';
@@ -244,7 +244,7 @@ logoInput.addEventListener('input', () => {
 const createInputField = (labelText, placeholder, value = '', type = 'text') => {
         const label = document.createElement('p');
         label.textContent = labelText;
-        label.style.marginBottom = '5px';
+        label.style.marginBottom = '10px';
         menu.appendChild(label);
 
         const input = document.createElement('input');
@@ -264,9 +264,26 @@ const createInputField = (labelText, placeholder, value = '', type = 'text') => 
     };
 
 // Kreiraj meni za podesavanje visine (heighInput)
-const savedHeight = localStorage.getItem('logoMarginTop') || '-150';
-const heightInput = createInputField('Set Height:', 'Enter height in px...', savedHeight, 'number');
-heightInput.style.marginBottom = '20px';
+const heightLabel = document.createElement('div');
+heightLabel.textContent = 'Set Height:'; // Tekst labela
+heightLabel.style.fontSize = '13px'; // Postavi veličinu fonta
+heightLabel.style.marginBottom = '5px'; // Margin ispod labela
+menu.appendChild(heightLabel); // Dodaj labelu u meni
+
+// Kreiraj input za visinu
+const savedHeight = localStorage.getItem('logoMarginTop') || '-150'; // Učitaj sačuvanu visinu
+const heightInput = document.createElement('input');
+heightInput.type = 'number'; // Tip inputa
+heightInput.placeholder = 'Enter height in px...'; // Placeholder
+heightInput.value = savedHeight; // Postavi sačuvanu visinu
+heightInput.style.width = '250px'; // Širina inputa
+heightInput.style.marginBottom = '20px'; // Margin ispod inputa
+heightInput.style.borderRadius = '4px'; // Zaobljeni ivici
+heightInput.style.border = '1px solid #dcdcdc'; // Granična boja
+heightInput.style.padding = '5px'; // Unutrašnje ivice
+
+menu.appendChild(heightInput); // Dodaj input u meni
+
 
 // (Meni - ShortcutTextColor)
 const colorLabel = document.createElement('div');
