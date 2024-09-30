@@ -168,7 +168,8 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos URL-a za pozadinsku sliku
     const backgroundLabel = document.createElement('p');
     backgroundLabel.textContent = 'Set background image:';
-    backgroundLabel.style.marginBottom = '3px';
+    backgroundLabel.style.fontSize = '13px';
+    backgroundLabel.style.marginBottom = '4px';
     menu.appendChild(backgroundLabel);
 
     const backgroundInput = document.createElement('input');
@@ -185,7 +186,8 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos teksta u search bar
     const searchbarLabel = document.createElement('p');
     searchbarLabel.textContent = 'Set searchbar text:';
-    searchbarLabel.style.marginBottom = '3px';
+searchbarLabel.style.fontSize = '13px';
+    searchbarLabel.style.marginBottom = '4px';
     menu.appendChild(searchbarLabel);
 
     const searchbarInput = document.createElement('input');
@@ -201,7 +203,8 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos custom provider-a
     const providerLabel = document.createElement('p');
     providerLabel.textContent = 'Custom provider:';
-    providerLabel.style.marginBottom = '3px';
+providerLabel.style.fontSize = '13px';
+    providerLabel.style.marginBottom = '4px';
     menu.appendChild(providerLabel);
 
     const providerInput = document.createElement('input');
@@ -217,7 +220,8 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos logotipa (slova)
     const logoLabel = document.createElement('p');
     logoLabel.textContent = 'Set logo letter:';
-    logoLabel.style.marginBottom = '3px';
+    logoLabel.style.fontSize = '13px';
+    logoLabel.style.marginBottom = '4px';
     menu.appendChild(logoLabel);
 
     const logoInput = document.createElement('input');
@@ -240,7 +244,7 @@ logoInput.addEventListener('input', () => {
 const createInputField = (labelText, placeholder, value = '', type = 'text') => {
         const label = document.createElement('p');
         label.textContent = labelText;
-        label.style.marginBottom = '3px';
+        label.style.marginBottom = '4px';
         menu.appendChild(label);
 
         const input = document.createElement('input');
@@ -266,7 +270,8 @@ const savedHeight = localStorage.getItem('logoMarginTop') || '-150';
 // (Meni - ShortcutTextColor)
 const colorLabel = document.createElement('p');
 colorLabel.textContent = 'Set text color:';
-colorLabel.style.marginBottom = '3px';
+colorLabel.style.fontSize = '13px';
+colorLabel.style.marginBottom = '4px';
 menu.appendChild(colorLabel);
 
 const colorSelect = document.createElement('select');
