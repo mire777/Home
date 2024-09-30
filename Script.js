@@ -4,7 +4,7 @@
 // @version          5.0
 // @description      Browser home page
 // @run-at           document-end
-// @match            https://www.google.com/
+// @match            https://mire777.github.io/Home/
 // ==/UserScript==
 
 (function() {
@@ -168,7 +168,7 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos URL-a za pozadinsku sliku
     const backgroundLabel = document.createElement('div');
     backgroundLabel.textContent = 'Set background image:';
-    backgroundLabel.style.fontSize = '13px';
+    backgroundLabel.style.fontSize = '14px';
     backgroundLabel.style.marginBottom = '5px';
     menu.appendChild(backgroundLabel);
 
@@ -186,7 +186,7 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos teksta u search bar
     const searchbarLabel = document.createElement('div');
     searchbarLabel.textContent = 'Set searchbar text:';
-    searchbarLabel.style.fontSize = '13px';
+    searchbarLabel.style.fontSize = '14px';
     searchbarLabel.style.marginBottom = '5px';
     menu.appendChild(searchbarLabel);
 
@@ -203,7 +203,7 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos custom provider-a
     const providerLabel = document.createElement('div');
     providerLabel.textContent = 'Custom provider:';
-    providerLabel.style.fontSize = '13px';
+    providerLabel.style.fontSize = '14px';
     providerLabel.style.marginBottom = '5px';
     menu.appendChild(providerLabel);
 
@@ -220,7 +220,7 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos logotipa (slova)
     const logoLabel = document.createElement('div');
     logoLabel.textContent = 'Set logo letter:';
-    logoLabel.style.fontSize = '13px';
+    logoLabel.style.fontSize = '14px';
     logoLabel.style.marginBottom = '5px';
     menu.appendChild(logoLabel);
 
@@ -266,7 +266,7 @@ const createInputField = (labelText, placeholder, value = '', type = 'text') => 
 // Kreiraj meni za podesavanje visine (heighInput)
 const heightLabel = document.createElement('div');
 heightLabel.textContent = 'Set Height:'; // Tekst labela
-heightLabel.style.fontSize = '13px'; // Postavi veličinu fonta
+heightLabel.style.fontSize = '14px'; // Postavi veličinu fonta
 heightLabel.style.marginBottom = '5px'; // Margin ispod labela
 menu.appendChild(heightLabel); // Dodaj labelu u meni
 
@@ -288,7 +288,7 @@ menu.appendChild(heightInput); // Dodaj input u meni
 // (Meni - ShortcutTextColor)
 const colorLabel = document.createElement('div');
 colorLabel.textContent = 'Set text color:';
-colorLabel.style.fontSize = '13px';
+colorLabel.style.fontSize = '14px';
 colorLabel.style.marginBottom = '5px';
 menu.appendChild(colorLabel);
 
@@ -610,7 +610,8 @@ colors.forEach(color => {
         menu.style.height = 'auto';
         menu.style.textAlign = 'center';
         menu.style.paddingBottom = '15px';
-        const message = document.createElement('p');
+        const message = document.createElement('div');
+        message.style.fontSize = '14px';
         message.textContent = 'Delete shortcut?';
         menu.appendChild(message);
 
