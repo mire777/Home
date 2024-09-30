@@ -1,24 +1,11 @@
 // ==UserScript==
-// @name             Home 3
+// @name             Home
 // @namespace        userscript://google-search
 // @version          5.0
 // @description      Browser home page
 // @run-at           document-end
 // @match            https://www.google.com/
 // ==/UserScript==
-
-let style = document.createElement('style');
-style.textContent = `
-    body {
-        font-size: 16px !important; /* ili neka druga željena veličina */
-        font-family: Arial, sans-serif !important; /* zameni sa željenim fontom */
-    }
-`;
-document.head.appendChild(style);
-
-
-
-
 
 (function() {
     let shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
@@ -181,8 +168,7 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos URL-a za pozadinsku sliku
     const backgroundLabel = document.createElement('p');
     backgroundLabel.textContent = 'Set background image:';
-    backgroundLabel.style.setProperty('fontSize', '13px', 'important');
-    backgroundLabel.style.marginBottom = '4px';
+    backgroundLabel.style.marginBottom = '10px';
     menu.appendChild(backgroundLabel);
 
     const backgroundInput = document.createElement('input');
@@ -190,7 +176,7 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     backgroundInput.placeholder = 'Enter image URL...';
     backgroundInput.value = backgroundImageUrl || '';
     backgroundInput.style.width = '250px';
-    backgroundInput.style.marginBottom = '5px';
+    backgroundInput.style.marginBottom = '10px';
     backgroundInput.style.borderRadius = '4px';
     backgroundInput.style.border = '1px solid #dcdcdc';
     backgroundInput.style.padding = '5px';
@@ -199,15 +185,14 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos teksta u search bar
     const searchbarLabel = document.createElement('p');
     searchbarLabel.textContent = 'Set searchbar text:';
-searchbarLabel.style.fontSize = '13px';
-    searchbarLabel.style.marginBottom = '4px';
+    searchbarLabel.style.marginBottom = '10px';
     menu.appendChild(searchbarLabel);
 
     const searchbarInput = document.createElement('input');
     searchbarInput.type = 'text';
     searchbarInput.placeholder = 'Enter search text...';
     searchbarInput.style.width = '250px';
-    searchbarInput.style.marginBottom = '5px';
+    searchbarInput.style.marginBottom = '10px';
     searchbarInput.style.borderRadius = '4px';
     searchbarInput.style.border = '1px solid #dcdcdc';
     searchbarInput.style.padding = '5px';
@@ -216,15 +201,14 @@ searchbarLabel.style.fontSize = '13px';
     // Opcija za unos custom provider-a
     const providerLabel = document.createElement('p');
     providerLabel.textContent = 'Custom provider:';
-providerLabel.style.fontSize = '13px';
-    providerLabel.style.marginBottom = '4px';
+    providerLabel.style.marginBottom = '10px';
     menu.appendChild(providerLabel);
 
     const providerInput = document.createElement('input');
     providerInput.type = 'text';
     providerInput.placeholder = 'Enter custom provider...';
     providerInput.style.width = '250px';
-    providerInput.style.marginBottom = '5px';
+    providerInput.style.marginBottom = '10px';
     providerInput.style.borderRadius = '4px';
     providerInput.style.border = '1px solid #dcdcdc';
     providerInput.style.padding = '5px';
@@ -233,8 +217,7 @@ providerLabel.style.fontSize = '13px';
     // Opcija za unos logotipa (slova)
     const logoLabel = document.createElement('p');
     logoLabel.textContent = 'Set logo letter:';
-    logoLabel.style.fontSize = '13px';
-    logoLabel.style.marginBottom = '4px';
+    logoLabel.style.marginBottom = '10px';
     menu.appendChild(logoLabel);
 
     const logoInput = document.createElement('input');
@@ -248,7 +231,7 @@ logoInput.addEventListener('input', () => {
 });
 
     logoInput.style.width = '250px';
-    logoInput.style.marginBottom = '5px';
+    logoInput.style.marginBottom = '10px';
     logoInput.style.borderRadius = '4px';
     logoInput.style.border = '1px solid #dcdcdc';
     logoInput.style.padding = '5px';
@@ -257,7 +240,7 @@ logoInput.addEventListener('input', () => {
 const createInputField = (labelText, placeholder, value = '', type = 'text') => {
         const label = document.createElement('p');
         label.textContent = labelText;
-        label.style.marginBottom = '4px';
+        label.style.marginBottom = '10px';
         menu.appendChild(label);
 
         const input = document.createElement('input');
@@ -266,7 +249,7 @@ const createInputField = (labelText, placeholder, value = '', type = 'text') => 
         input.value = value;
         input.style = `
             width: 250px;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             border-radius: 4px;
             border: 1px solid #dcdcdc;
             padding: 5px;
@@ -283,8 +266,7 @@ const savedHeight = localStorage.getItem('logoMarginTop') || '-150';
 // (Meni - ShortcutTextColor)
 const colorLabel = document.createElement('p');
 colorLabel.textContent = 'Set text color:';
-colorLabel.style.fontSize = '13px';
-colorLabel.style.marginBottom = '4px';
+colorLabel.style.marginBottom = '10px';
 menu.appendChild(colorLabel);
 
 const colorSelect = document.createElement('select');
