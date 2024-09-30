@@ -168,7 +168,7 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
     // Opcija za unos URL-a za pozadinsku sliku
     const backgroundLabel = document.createElement('p');
     backgroundLabel.textContent = 'Set background image:';
-    backgroundLabel.style.fontSize = '13px';
+    backgroundLabel.style.setProperty('fontSize', '13px', 'important');
     backgroundLabel.style.marginBottom = '4px';
     menu.appendChild(backgroundLabel);
 
