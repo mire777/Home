@@ -150,6 +150,7 @@ addShortcutButton.style.bottom = `calc(5px + env(safe-area-inset-bottom))`; // o
 
         loadShortcuts(shortcutArea);
         document.body.appendChild(overlay);
+        document.body.style.userSelect = 'none';
     }
 
     function openBackgroundMenu() {
