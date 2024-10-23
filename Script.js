@@ -14,7 +14,8 @@
     function createSearchOverlay() {
 
     // Postavi osnovne vrednosti na početku
-    backgroundImageUrl = localStorage.getItem('backgroundImageUrl') || 'https://raw.githubusercontent.com/mire777/Home/refs/heads/main/wallpaper.png';
+    const wallpaper = 'https://raw.githubusercontent.com/mire777/Home/refs/heads/main/wallpaper.png'
+    backgroundImageUrl = localStorage.getItem('backgroundImageUrl') || wallpaper;
     const searchText = localStorage.getItem('searchText') || '';
     const logoLetter = localStorage.getItem('logoLetter') || 'S';
     const ShortcutTextColor = localStorage.getItem('ShortcutTextColor') || 'black';   
@@ -343,10 +344,10 @@ saveButton.addEventListener('click', () => {
         document.getElementById('custom-search-overlay').style.backgroundImage = `url(${backgroundImageUrl})`;
         document.getElementById('custom-search-overlay').style.backgroundColor = 'transparent';
     } else {
-        backgroundImageUrl = '';
+        backgroundImageUrl = wallpaper;
         localStorage.removeItem('backgroundImageUrl');
         document.getElementById('custom-search-overlay').style.backgroundColor = 'rgba(255, 255, 255, 1)';
-        document.getElementById('custom-search-overlay').style.backgroundImage = '';
+        document.getElementById('custom-search-overlay').style.backgroundImage = wallpaper;
     }
 
     // Sačuvajte dodatne informacije
