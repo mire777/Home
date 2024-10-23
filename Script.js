@@ -28,7 +28,7 @@
         overlay.style.left = '0';
         overlay.style.width = '100%';
         overlay.style.height = '100%';
-        overlay.style.backgroundColor = backgroundImageUrl ? 'transparent' : 'rgba(255, 255, 255, 1)';
+        overlay.style.backgroundColor = backgroundImageUrl ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 1)';
         overlay.style.backgroundImage = backgroundImageUrl ? `url(${backgroundImageUrl})` : '';
         overlay.style.backgroundSize = 'cover';
         overlay.style.zIndex = '10000';
@@ -341,7 +341,7 @@ saveButton.addEventListener('click', () => {
         backgroundImageUrl = newUrl;
         localStorage.setItem('backgroundImageUrl', backgroundImageUrl);
         document.getElementById('custom-search-overlay').style.backgroundImage = `url(${backgroundImageUrl})`;
-        document.getElementById('custom-search-overlay').style.backgroundColor = 'transparent';
+        document.getElementById('custom-search-overlay').style.backgroundColor = 'rgba(255, 255, 255, 1)';
     } else {
         backgroundImageUrl = '';
         localStorage.removeItem('backgroundImageUrl');
