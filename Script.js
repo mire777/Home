@@ -14,7 +14,7 @@
     function createSearchOverlay() {
 
     // Postavi osnovne vrednosti na početku
-    backgroundImageUrl = localStorage.getItem('backgroundImageUrl') || '';
+    backgroundImageUrl = localStorage.getItem('backgroundImageUrl') || 'https://raw.githubusercontent.com/mire777/Home/refs/heads/main/wallpaper.png';
     const searchText = localStorage.getItem('searchText') || '';
     const logoLetter = localStorage.getItem('logoLetter') || 'S';
     const ShortcutTextColor = localStorage.getItem('ShortcutTextColor') || 'black';   
