@@ -6,7 +6,7 @@
 // @run-at           document-end
 // @match            https://mire777.github.io/Home/
 // ==/UserScript==
-
+// t
 (function() {
     let shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
     let backgroundImageUrl = localStorage.getItem('backgroundImageUrl');
